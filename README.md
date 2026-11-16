@@ -112,12 +112,3 @@ python -m http.server 8000 --bind 127.0.0.1
 시작 월을 2025년 1월로 바꾸고 관광객 유형에서 외국인을 선택하면, 선택한 12개월의 합계가 2,242,187명으로 갱신된다.
 
 ![2025년 외국인 관광객으로 필터링한 대시보드](figures/dashboard-filtered.png)
-
-### Vercel 배포
-
-이 GitHub 저장소를 Vercel에서 가져오고 프로젝트 루트에서 Deploy를 누른다. 정적 사이트 설정은 vercel.json에 포함되어 있다. Vercel CLI를 사용하는 경우 저장소 루트에서 로그인한 뒤 배포한다. [Vercel 배포 안내](https://vercel.com/docs/deployments)
-
-```powershell
-npx vercel login
-npx vercel deploy --prod
-```
