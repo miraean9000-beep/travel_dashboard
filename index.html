@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="제주 월별 입도 관광객의 추세와 계절성을 살펴보세요.">
+<title>제주 관광 추세</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2f6f3;color:#172c29;font:16px/1.55 "Malgun Gothic",system-ui,sans-serif}header{background:#103d38;color:#fff;padding:48px 24px 46px}header div,main,footer{max-width:1080px;margin:auto}h1{font-size:clamp(2rem,6vw,3.6rem);line-height:1.12;margin:8px 0 12px;letter-spacing:-.07em}header p{margin:0;color:#d3e8df}header .range{color:#a2e1c4;font-size:.85rem;font-weight:700;letter-spacing:.06em}main,footer{padding:22px 20px}section{margin-bottom:18px}.panel,.metric{background:#fff;border:1px solid #dbe5de;border-radius:16px;padding:20px}.filters{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px}label{display:grid;gap:5px;font-size:.85rem;font-weight:700}select,button{font:inherit;border:1px solid #aebfb8;border-radius:8px;background:#fff;color:inherit;padding:8px 10px}button{cursor:pointer;background:#e3f3eb}.metrics,.findings{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric small,.muted,footer{color:#4b625a}.metric strong{display:block;font-size:clamp(1.35rem,3vw,2rem);margin:4px 0}.metric strong,.detail{font-variant-numeric:tabular-nums}h2{font-size:1.28rem;margin:0 0 6px}p{margin:0 0 10px}canvas{display:block;width:100%;height:300px}.detail{margin:5px 0 0;min-height:1.6em;color:#146951}.findings p{margin:0}.findings strong{display:block;margin-bottom:5px;color:#146951}footer{font-size:.85rem}a{color:#11664f}details summary{cursor:pointer;font-weight:700}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{text-align:left;border-bottom:1px solid #e3ebe5;padding:6px} [hidden]{display:none!important}@media(max-width:650px){header{padding:34px 20px}.metrics,.findings{grid-template-columns:1fr}.panel,.metric{padding:14px}canvas{height:245px}}
+</style>
+<script src="dashboard.js" defer></script>
+</head>
+<body>
+<header><div><p class="range">2013.01–2025.12 · 156개월</p><h1>제주 관광 추세</h1><p>제주를 찾은 관광객이 언제 늘고, 얼마나 회복했는지 살펴보세요.</p></div></header>
+<main>
+<p id="status" role="status">관광객 데이터를 불러오는 중입니다.</p>
+<div id="dashboard" hidden>
+<section class="panel filters" aria-label="조회 조건">
+<label>시작 월<select id="start"></select></label>
+<label>종료 월<select id="end"></select></label>
+<label>관광객 유형<select id="group"><option value="total">전체</option><option value="domestic">내국인</option><option value="foreign">외국인</option></select></label>
+<button id="reset" type="button">전체 기간</button>
+</section>
+<section class="metrics" aria-label="선택 구간 요약" aria-live="polite">
+<div class="metric"><small>관광객 합계</small><strong id="sum"></strong><small id="period"></small></div>
+<div class="metric"><small>월평균 관광객</small><strong id="average"></strong><small id="months"></small></div>
+<div class="metric"><small>가장 많았던 달</small><strong id="peak"></strong><small id="peak-month"></small></div>
+</section>
+<section class="panel">
+<h2>월별 입도 추이</h2><p class="muted">진한 초록선은 직전 12개월 평균입니다. 그래프 위에 마우스를 올리거나 터치하면 월별 수치가 표시됩니다.</p>
+<canvas id="trend" role="img" aria-label="선택 구간 관광객 추이"></canvas>
+<p class="detail" id="detail"></p>
+</section>
+<section class="panel">
+<h2>달력 월별 평균</h2><p class="muted">선택 기간 안에서 같은 달끼리 평균을 냅니다. 빈 달은 해당 기간에 관측치가 없는 달입니다.</p>
+<canvas id="season" role="img" aria-label="선택 구간의 달력 월별 평균 관광객"></canvas>
+</section>
+<section class="panel"><h2>분석에서 발견한 점</h2><div class="findings">
+<p><strong>8월에 가장 많이 방문</strong>2013~2019년에는 8월 평균 방문객이 약 133만 명으로 2월보다 39.7% 많았습니다.</p>
+<p><strong>2020년에 33.0% 감소</strong>2019년 약 1,529만 명이던 연간 관광객은 2020년 약 1,024만 명으로 줄었습니다.</p>
+<p><strong>내·외국인 회복 속도의 차이</strong>2025년 전체는 2019년의 90.7%였고 내국인은 85.7%, 외국인은 129.9%였습니다.</p>
+</div></section>
+<section class="panel"><details><summary>선택 기간의 월별 데이터 표</summary><table><thead><tr><th scope="col">기준연월</th><th scope="col">관광객 (명)</th></tr></thead><tbody id="records"></tbody></table></details></section>
+</div>
+</main>
+<footer>원출처 제주특별자치도관광협회 · 제공 제주관광공사 · 공공누리 제1유형(출처 표시)<br><a href="https://data.ijto.or.kr/prog/dataPick/bigdata/sub02/view.do?regSn=17">원천 통계</a> · <a href="https://data.wenivops.co.kr/d/ijto-17">CSV 제공 페이지</a> · <a href="README.md">분석 문서 다운로드</a></footer>
+</body>
+</html>
